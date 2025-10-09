@@ -5,24 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BockBlick</title>
 
-  <!-- Banner und Footer-Promo ausblenden -->
   <style>
-    /* Spreadshop Werbebanner oben */
-    .sprd-signup-banner__link.sprd-c-cta {
-        display: none !important;
-    }
-
-    /* Footer-Promo entfernen */
-    #buttonSpreadshirt {
-        display: none !important;
-    }
-     /* Insta Logo vergrößern */
-    .sprd-social-bar__icon use[xlink\\:href="#sprd-social-instagram"] {
-    width: 50px !important;
-    height: 50px !important;
-}
-
-
+    /* Globale Styles */
     body {
         font-family: Arial, sans-serif;
         margin: 0;
@@ -30,10 +14,24 @@
         background: #f9f9f9;
     }
 
+    /* Shop Container */
     #myShop {
         width: 100%;
-        min-height: 100vh; /* Mindesthöhe für mobile Ansicht */
+        min-height: 100vh;
         overflow: hidden;
+    }
+
+    /* Spreadshop Anpassungen */
+    .sprd-signup-banner__link.sprd-c-cta,
+    #buttonSpreadshirt {
+        display: none !important; /* Banner + Footer-Promo */
+    }
+
+    /* Instagram Logo vergrößern */
+    .sprd-social-bar__icon use[xlink\\:href="#sprd-social-instagram"] {
+        width: 50px !important;
+        height: 50px !important;
+        display: inline-block;
     }
   </style>
 </head>
@@ -52,20 +50,21 @@
       baseId: 'myShop'
   };
 
-  // Dynamische Höhe anpassen
+  // Dynamische Höhe mit MutationObserver
   function adjustShopHeight() {
-      var shopContainer = document.getElementById('myShop');
-      if(shopContainer && shopContainer.firstElementChild) {
-          var height = shopContainer.firstElementChild.scrollHeight;
-          shopContainer.style.height = height + 'px';
-      }
+      const shopContainer = document.getElementById('myShop');
+      if (!shopContainer) return;
+
+      const observer = new MutationObserver(() => {
+          if (shopContainer.firstElementChild) {
+              shopContainer.style.height = shopContainer.firstElementChild.scrollHeight + 'px';
+          }
+      });
+
+      observer.observe(shopContainer, { childList: true, subtree: true });
   }
 
-  // Wiederholt prüfen, falls der Shop dynamisch nachgeladen wird
-  var interval = setInterval(adjustShopHeight, 500);
-
-  // Optional: nach 10 Sekunden stoppen
-  setTimeout(function() { clearInterval(interval); }, 10000);
+  adjustShopHeight();
 </script>
 
 <script type="text/javascript" src="https://bockblick.myspreadshop.de/shopfiles/shopclient/shopclient.nocache.js"></script>
