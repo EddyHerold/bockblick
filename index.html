@@ -4,9 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bockblick Shop</title>
+    <style>
+    /* Banner im Embed-Code ausblenden */
+    .sprd-signup-banner__link.sprd-c-cta {
+    display: none !important;
+}
+</style>
 </head>
 <body>
     <h1>Willkommen bei Bockblick</h1>
-    <p>Hier kommt bald der Shop!</p>
+    <!-- Spreadshop Embed -->
+    <div id="myShop">
+    <a href="https://bockblick.myspreadshop.de">bockblick</a>
+</div>
+
+<script>
+    var spread_shop_config = {
+        shopName: 'bockblick',
+        locale: 'de_DE',
+        prefix: 'https://bockblick.myspreadshop.de',
+        baseId: 'myShop'
+    };
+</script>
+
+<script type="text/javascript"
+        src="https://bockblick.myspreadshop.de/shopfiles/shopclient/shopclient.nocache.js">
+</script>
 </body>
 </html>
