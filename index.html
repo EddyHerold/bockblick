@@ -29,7 +29,7 @@
   </style>
 </head>
 <body>
-<h1>test</h1>
+
 <!-- Spreadshop Embed -->
 <div id="myShop">
     <a href="https://bockblick.myspreadshop.de">bockblick</a>
@@ -43,7 +43,7 @@
       baseId: 'myShop'
   };
 
-  // Dynamische Höhe anpassen
+  // Dynamische Höhe mit MutationObserver
   function adjustShopHeight() {
       const shopContainer = document.getElementById('myShop');
       if (!shopContainer) return;
@@ -58,19 +58,26 @@
       observer.observe(shopContainer, { childList: true, subtree: true });
   }
 
-  // Funktion: Instagram-Icon größer machen
+  // Instagram-Icon größer machen
   function scaleInstagramIcon() {
       const svgIcons = document.querySelectorAll('.sprd-social-bar__icon svg');
       svgIcons.forEach(svg => {
           const useEl = svg.querySelector('use');
           if (useEl && useEl.getAttribute('xlink:href') === '#sprd-social-instagram') {
-              svg.style.width = '50px';
-              svg.style.height = '50px';
+              svg.style.width = '150px';
+              svg.style.height = '150px';
           }
       });
   }
 
   adjustShopHeight();
+
+  // Tab-Title fixieren mit MutationObserver
+  const titleObserver = new MutationObserver(() => {
+      document.title = "BockBlick";
+  });
+  const head = document.querySelector("head");
+  titleObserver.observe(head, { childList: true, subtree: true });
 </script>
 
 <script type="text/javascript" src="https://bockblick.myspreadshop.de/shopfiles/shopclient/shopclient.nocache.js"></script>
