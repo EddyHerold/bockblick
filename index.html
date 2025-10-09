@@ -26,19 +26,10 @@
     #buttonSpreadshirt {
         display: none !important; /* Banner + Footer-Promo */
     }
-
-    /* Instagram Logo vergrößern */
-    .sprd-social-bar__icon use[xlink\\:href="#sprd-social-instagram"] {
-        width: 150px !important;
-        height: 150px !important;
-        display: inline-block;
-    }
   </style>
 </head>
 <body>
-
-<h1>Test</h1>
-  
+<h1>test</h1>
 <!-- Spreadshop Embed -->
 <div id="myShop">
     <a href="https://bockblick.myspreadshop.de">bockblick</a>
@@ -52,7 +43,7 @@
       baseId: 'myShop'
   };
 
-  // Dynamische Höhe mit MutationObserver
+  // Dynamische Höhe anpassen
   function adjustShopHeight() {
       const shopContainer = document.getElementById('myShop');
       if (!shopContainer) return;
@@ -60,10 +51,23 @@
       const observer = new MutationObserver(() => {
           if (shopContainer.firstElementChild) {
               shopContainer.style.height = shopContainer.firstElementChild.scrollHeight + 'px';
+              scaleInstagramIcon(); // Instagram Logo skalieren
           }
       });
 
       observer.observe(shopContainer, { childList: true, subtree: true });
+  }
+
+  // Funktion: Instagram-Icon größer machen
+  function scaleInstagramIcon() {
+      const svgIcons = document.querySelectorAll('.sprd-social-bar__icon svg');
+      svgIcons.forEach(svg => {
+          const useEl = svg.querySelector('use');
+          if (useEl && useEl.getAttribute('xlink:href') === '#sprd-social-instagram') {
+              svg.style.width = '50px';
+              svg.style.height = '50px';
+          }
+      });
   }
 
   adjustShopHeight();
