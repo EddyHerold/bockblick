@@ -21,4 +21,48 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        backgr
+        background: #f9f9f9;
+    }
+
+    #myShop {
+        width: 100%;
+        min-height: 100vh; /* Mindesthöhe für mobile Ansicht */
+        overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Spreadshop Embed -->
+<div id="myShop">
+    <a href="https://bockblick.myspreadshop.de">bockblick</a>
+</div>
+
+<script>
+  var spread_shop_config = {
+      shopName: 'bockblick',
+      locale: 'de_DE',
+      prefix: 'https://bockblick.myspreadshop.de',
+      baseId: 'myShop'
+  };
+
+  // Dynamische Höhe anpassen
+  function adjustShopHeight() {
+      var shopContainer = document.getElementById('myShop');
+      if(shopContainer && shopContainer.firstElementChild) {
+          var height = shopContainer.firstElementChild.scrollHeight;
+          shopContainer.style.height = height + 'px';
+      }
+  }
+
+  // Wiederholt prüfen, falls der Shop dynamisch nachgeladen wird
+  var interval = setInterval(adjustShopHeight, 500);
+
+  // Optional: nach 10 Sekunden stoppen
+  setTimeout(function() { clearInterval(interval); }, 10000);
+</script>
+
+<script type="text/javascript" src="https://bockblick.myspreadshop.de/shopfiles/shopclient/shopclient.nocache.js"></script>
+
+</body>
+</html>
