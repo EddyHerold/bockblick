@@ -6,7 +6,7 @@
   <title>BockBlick</title>
 
   <style>
-    /* --- Globale Styles --- */
+    /* ===== Globale Styles ===== */
     :root {
       --bg-color: #f9f9f9;
       --font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@
       background: var(--bg-color);
     }
 
-    /* --- Shop Container --- */
+    /* ===== Shop Container ===== */
     #myShop {
       width: 100%;
       min-height: 100vh;
@@ -29,18 +29,13 @@
       align-items: flex-start;
     }
 
-    /* --- Spreadshop-Anpassungen --- */
+    /* ===== Spreadshop Anpassungen ===== */
     .sprd-signup-banner__link.sprd-c-cta,
     #buttonSpreadshirt {
       display: none !important; /* Banner + Footer-Promo entfernen */
     }
 
-    /* Optional: etwas Abstand am unteren Rand für Mobile */
-    .sprd-info-footer {
-      margin-bottom: 30px !important;
-    }
-
-    /* Fallback-Link unsichtbar, aber für Spreadshop verfügbar */
+    /* ===== Unsichtbarer Fallback-Link ===== */
     #myShop > a {
       color: transparent !important;
       text-decoration: none !important;
@@ -53,18 +48,29 @@
       overflow: hidden;
     }
 
-    
+    /* ===== Instagram-Icon vergrößern ===== */
+    /* Skalierung der kompletten Social-Bar */
+    .sprd-social-bar {
+      transform: scale(1.6) !important;
+      transform-origin: center !important;
+    }
+
+    /* Optional: Wenn das Insta-Icon das letzte ist */
+    .sprd-social-bar__icon:last-child {
+      transform: scale(1.6) !important;
+      transform-origin: center !important;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Spreadshop Embed -->
+  <!-- ===== Spreadshop Embed ===== -->
   <div id="myShop">
     <a href="https://bockblick.myspreadshop.de">bockblick</a>
   </div>
 
   <script>
-    /* --- Spreadshop-Konfiguration --- */
+    /* ===== Spreadshop Konfiguration ===== */
     window.spread_shop_config = {
       shopName: 'bockblick',
       locale: 'de_DE',
@@ -72,7 +78,7 @@
       baseId: 'myShop'
     };
 
-    /* --- Dynamische Höhe anpassen --- */
+    /* ===== Dynamische Höhe anpassen ===== */
     function adjustShopHeight() {
       const shopContainer = document.getElementById('myShop');
       if (!shopContainer) return;
@@ -81,25 +87,13 @@
         const child = shopContainer.firstElementChild;
         if (child) {
           shopContainer.style.height = child.scrollHeight + 'px';
-          scaleInstagramIcon(); // Instagram Logo vergrößern
         }
       });
 
       observer.observe(shopContainer, { childList: true, subtree: true });
     }
 
-    /* --- Instagram-Icon vergrößern --- */
-    function scaleInstagramIcon() {
-      document.querySelectorAll('.sprd-social-bar__icon svg').forEach(svg => {
-        const useEl = svg.querySelector('use');
-        if (useEl?.getAttribute('xlink:href') === '#sprd-social-instagram') {
-          svg.style.width = '150px';
-          svg.style.height = '150px';
-        }
-      });
-    }
-
-    /* --- Tab-Title fixieren (robust) --- */
+    /* ===== Tab-Titel fixieren ===== */
     function fixTabTitle() {
       const head = document.querySelector('head');
       if (!head) return;
@@ -109,13 +103,13 @@
       titleObserver.observe(head, { childList: true, subtree: true });
     }
 
-    /* --- Initialisierung --- */
     document.addEventListener('DOMContentLoaded', () => {
       adjustShopHeight();
       fixTabTitle();
     });
   </script>
 
+  <!-- Spreadshop Script -->
   <script 
     src="https://bockblick.myspreadshop.de/shopfiles/shopclient/shopclient.nocache.js" 
     defer>
