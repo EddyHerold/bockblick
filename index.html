@@ -42,9 +42,15 @@
 
    /* Fallback-Link im Embed unsichtbar machen */
     #myShop > a {
-      visibility: hidden;
-      position: absolute;
-      left: -9999px;
+      color: transparent !important;    /* Text unsichtbar */
+      text-decoration: none !important; /* Unterstreichung weg */
+      font-size: 0 !important;          /* Kein sichtbarer Text */
+      cursor: default !important;       /* Kein Zeiger beim Hover */
+      background: transparent !important;
+      display: inline-block;
+      width: 100%;
+      height: 1px;                      /* Minimalhöhe, damit Spreadshop es findet */
+      overflow: hidden;
     }
     
   </style>
