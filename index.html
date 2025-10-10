@@ -48,17 +48,26 @@
       overflow: hidden;
     }
 
-    /* ===== Instagram-Icon vergrößern ===== */
-    /* Skalierung der kompletten Social-Bar */
+    /* ===== Instagram-Icon vergrößern & fixen ===== */
     .sprd-social-bar {
-      transform: scale(1.6) !important;
+      transform: scale(1.5) !important;       /* 1.0 = normal, 1.5 = 50% größer */
+      transform-origin: center !important;
+      margin-right: 20px !important;          /* Platz rechts, damit nichts abgeschnitten wird */
+      justify-content: center !important;     /* zentriert im Footer */
+    }
+
+    .sprd-social-bar__icon {
+      overflow: visible !important;           /* verhindert Abschneiden innerhalb des Icons */
+    }
+
+    .sprd-social-bar__icon:last-child {
+      transform: scale(1.6) !important;       /* nur Instagram etwas größer */
       transform-origin: center !important;
     }
 
-    /* Optional: Wenn das Insta-Icon das letzte ist */
-    .sprd-social-bar__icon:last-child {
-      transform: scale(1.6) !important;
-      transform-origin: center !important;
+    .sprd-info-footer {
+      margin-bottom: 40px !important;         /* Abstand nach unten */
+      padding-bottom: 40px !important;        /* extra Platz für größeres Icon */
     }
   </style>
 </head>
@@ -109,7 +118,7 @@
     });
   </script>
 
-  <!-- Spreadshop Script -->
+  <!-- ===== Spreadshop Script ===== -->
   <script 
     src="https://bockblick.myspreadshop.de/shopfiles/shopclient/shopclient.nocache.js" 
     defer>
