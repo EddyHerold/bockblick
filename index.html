@@ -6,81 +6,105 @@
   <title>BockBlick</title>
 
   <style>
-    /* Globale Styles */
+    /* --- Globale Styles --- */
+    :root {
+      --bg-color: #f9f9f9;
+      --font-family: Arial, sans-serif;
+    }
+
     body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #f9f9f9;
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 0;
+      background: var(--bg-color);
     }
 
-    /* Shop Container */
+    /* --- Shop Container --- */
     #myShop {
-        width: 100%;
-        min-height: 100vh;
-        overflow: hidden;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
     }
 
-    /* Spreadshop Anpassungen */
+    /* --- Spreadshop-Anpassungen --- */
     .sprd-signup-banner__link.sprd-c-cta,
     #buttonSpreadshirt {
-        display: none !important; /* Banner + Footer-Promo */
+      display: none !important; /* Banner + Footer-Promo entfernen */
+    }
+
+    /* Optional: etwas Abstand am unteren Rand für Mobile */
+    .sprd-info-footer {
+      margin-bottom: 30px !important;
     }
   </style>
 </head>
 <body>
 
-<!-- Spreadshop Embed -->
-<div id="myShop">
+  <!-- Spreadshop Embed -->
+  <div id="myShop">
     <a href="https://bockblick.myspreadshop.de">bockblick</a>
-</div>
+  </div>
 
-<script>
-  var spread_shop_config = {
+  <script>
+    /* --- Spreadshop-Konfiguration --- */
+    const spread_shop_config = {
       shopName: 'bockblick',
       locale: 'de_DE',
       prefix: 'https://bockblick.myspreadshop.de',
       baseId: 'myShop'
-  };
+    };
 
-  // Dynamische Höhe mit MutationObserver
-  function adjustShopHeight() {
+    /* --- Dynamische Höhe anpassen --- */
+    function adjustShopHeight() {
       const shopContainer = document.getElementById('myShop');
       if (!shopContainer) return;
 
       const observer = new MutationObserver(() => {
-          if (shopContainer.firstElementChild) {
-              shopContainer.style.height = shopContainer.firstElementChild.scrollHeight + 'px';
-              scaleInstagramIcon(); // Instagram Logo skalieren
-          }
+        const child = shopContainer.firstElementChild;
+        if (child) {
+          shopContainer.style.height = child.scrollHeight + 'px';
+          scaleInstagramIcon(); // Instagram Logo vergrößern
+        }
       });
 
       observer.observe(shopContainer, { childList: true, subtree: true });
-  }
+    }
 
-  // Instagram-Icon größer machen
-  function scaleInstagramIcon() {
-      const svgIcons = document.querySelectorAll('.sprd-social-bar__icon svg');
-      svgIcons.forEach(svg => {
-          const useEl = svg.querySelector('use');
-          if (useEl && useEl.getAttribute('xlink:href') === '#sprd-social-instagram') {
-              svg.style.width = '50px';
-              svg.style.height = '50px';
-          }
+    /* --- Instagram-Icon vergrößern --- */
+    function scaleInstagramIcon() {
+      document.querySelectorAll('.sprd-social-bar__icon svg').forEach(svg => {
+        const useEl = svg.querySelector('use');
+        if (useEl?.getAttribute('xlink:href') === '#sprd-social-instagram') {
+          svg.style.width = '150px';
+          svg.style.height = '150px';
+        }
       });
-  }
+    }
 
-  adjustShopHeight();
+    /* --- Tab-Title fixieren (robust) --- */
+    function fixTabTitle() {
+      const head = document.querySelector('head');
+      if (!head) return;
+      const titleObserver = new MutationObserver(() => {
+        if (document.title !== 'BockBlick') document.title = 'BockBlick';
+      });
+      titleObserver.observe(head, { childList: true, subtree: true });
+    }
 
-  // Tab-Title auf "BockBlick" fixieren (auch wenn Spreadshop überschreibt)
-  function setTabTitle() {
-      document.title = "BockBlick";
-  }
-  var titleInterval = setInterval(setTabTitle, 100);
-  setTimeout(function(){ clearInterval(titleInterval); }, 5000);
-</script>
+    /* --- Initialisierung --- */
+    document.addEventListener('DOMContentLoaded', () => {
+      adjustShopHeight();
+      fixTabTitle();
+    });
+  </script>
 
-<script type="text/javascript" src="https://bockblick.myspreadshop.de/shopfiles/shopclient/shopclient.nocache.js"></script>
+  <script 
+    src="https://bockblick.myspreadshop.de/shopfiles/shopclient/shopclient.nocache.js" 
+    defer>
+  </script>
 
 </body>
 </html>
