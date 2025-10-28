@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bald verfügbar – Euer Outdoor-Shop</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: linear-gradient(to bottom, #0d1b14, #1b3b2f, #2f5d3a);
+      color: #f5f5f5;
+      /* 👉 Hier dein eigenes GitHub-Bild einfügen */
+      background-image: url('/main/bockblick-shop.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .overlay {
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(3px);
+      padding: 40px;
+      border-radius: 30px;
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #a7f3d0;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      color: #d1fae5;
+    }
+
+    input[type="email"] {
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      width: 70%;
+      max-width: 300px;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: #000;
+    }
+
+    input::placeholder {
+      color: #4ade80;
+    }
+
+    button {
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      background-color: #10b981;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #059669;
+    }
+
+    #message {
+      margin-top: 15px;
+      color: #a7f3d0;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.8rem;
+      color: #d1fae5;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>Hier wächst bald euer neuer Lieblingsshop 🌲</h1>
+    <p>
+      Wir bereiten etwas Besonderes für euch vor – Kleidung inspiriert von Bergen, Wäldern und Freiheit.<br>
+      Bleibt auf dem Laufenden und erfahrt als Erste, wenn wir online gehen!
+    </p>
+
+    <form id="notifyForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required />
+      <button type="submit">Benachrichtigen</button>
+    </form>
+
+    <div id="message">Danke! Wir melden uns, sobald es soweit ist.</div>
+
+    <footer>
+      © <span id="year"></span> Euer Outdoor-Shop — Alle Rechte vorbehalten
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const form = document.getElementById('notifyForm');
+    const message = document.getElementById('message');
+
+    form.addEventListener('submit', function() {
+      message.style.display = 'block';
+      // Optional: sanft ausblenden nach 5 Sekunden
+      setTimeout(() => message.style.display = 'none', 5000);
+    });
+  </script>
+</body>
+</html>
