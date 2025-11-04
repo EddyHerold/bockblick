@@ -5,15 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BockBlick</title>
 
-    <!-- Favicon -->
+  <!-- Google Fonts für modernen Look -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="192x192" href="favicon.png?v=2">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon.png?v=2">
-  
+
   <style>
     /* ===== Globale Styles ===== */
     :root {
-      --bg-color: #f9f9f9;
-      --font-family: Arial, sans-serif;
+      --bg-color: linear-gradient(180deg, #a8edea 0%, #fed6e3 100%); /* sanfter Himmel-/Naturverlauf */
+      --font-family: 'Poppins', Arial, sans-serif;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-radius: 16px;
+      --card-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
@@ -21,22 +31,38 @@
       margin: 0;
       padding: 0;
       background: var(--bg-color);
+      background-attachment: fixed;
+      color: #333;
     }
 
     /* ===== Shop Container ===== */
     #myShop {
       width: 100%;
       min-height: 100vh;
-      overflow: hidden;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    #myShop .shop-card {
+      background: var(--card-bg);
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-shadow);
+      width: 100%;
+      max-width: 1200px;
+      padding: 30px;
+      transition: transform 0.3s ease;
+    }
+
+    #myShop .shop-card:hover {
+      transform: translateY(-5px);
     }
 
     /* ===== Spreadshop Anpassungen ===== */
     .sprd-signup-banner__link.sprd-c-cta,
     #buttonSpreadshirt {
-      display: none !important; /* Banner + Footer-Promo entfernen */
+      display: none !important;
     }
 
     /* ===== Unsichtbarer Fallback-Link ===== */
@@ -52,20 +78,20 @@
       overflow: hidden;
     }
 
-    /* ===== Instagram-Icon vergrößern & fixen ===== */
+    /* ===== Social Icons ===== */
     .sprd-social-bar {
-      transform: scale(1.8) !important;       /* 1.0 = normal, 1.5 = 50% größer */
+      transform: scale(1.8) !important;
       transform-origin: center !important;
-      margin-right: 20px !important;          /* Platz rechts, damit nichts abgeschnitten wird */
-      justify-content: center !important;     /* zentriert im Footer */
+      margin-right: 20px !important;
+      justify-content: center !important;
     }
 
     .sprd-social-bar__icon {
-      overflow: visible !important;           /* verhindert Abschneiden innerhalb des Icons */
+      overflow: visible !important;
     }
 
     .sprd-social-bar__icon:last-child {
-      transform: scale(2.6) !important;       /* nur Instagram etwas größer */
+      transform: scale(2.6) !important;
       transform-origin: center !important;
       margin-left: 12px !important;
     }
@@ -76,18 +102,18 @@
     }
 
     .sprd-info-footer {
-      margin-bottom: 40px !important;         /* Abstand nach unten */
-      padding-bottom: 40px !important;        /* extra Platz für größeres Icon */
+      margin-bottom: 40px !important;
+      padding-bottom: 40px !important;
     }
-
-
   </style>
 </head>
 <body>
 
   <!-- ===== Spreadshop Embed ===== -->
   <div id="myShop">
-    <a href="https://bockblick.myspreadshop.de">bockblick</a>
+    <div class="shop-card">
+      <a href="https://bockblick.myspreadshop.de">bockblick</a>
+    </div>
   </div>
 
   <script>
