@@ -5,67 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BockBlick</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
+    <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="192x192" href="favicon.png?v=2">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon.png?v=2">
-
+  
   <style>
     /* ===== Globale Styles ===== */
     :root {
-      --bg-color: #1c1b18; /* sehr dunkles Erdfarben-Dunkelgrau */
-      --font-family: 'Montserrat', sans-serif;
-      --card-bg: rgba(38, 34, 30, 0.95); /* dunkles Holz/Stein */
-      --card-radius: 16px;
-      --card-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      --accent: #c9a66b; /* warme, elegante Erdton-Akzentfarbe */
-    }
-
-    * {
-      box-sizing: border-box;
+      --bg-color: #f9f9f9;
+      --font-family: Arial, sans-serif;
     }
 
     body {
       font-family: var(--font-family);
       margin: 0;
       padding: 0;
-      background: var(--bg-color) url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3M3wwfDF8c2VlfHx8fHx8Mnx8MTY5OTAwNjk0Mg&ixlib=rb-4.0.3&q=80&w=1920') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      background: var(--bg-color);
     }
 
     /* ===== Shop Container ===== */
     #myShop {
       width: 100%;
-      padding: 40px 20px;
+      min-height: 100vh;
+      overflow: hidden;
       display: flex;
       justify-content: center;
+      align-items: flex-start;
     }
 
-    #myShop .shop-card {
-      background: var(--card-bg);
-      border-radius: var(--card-radius);
-      box-shadow: var(--card-shadow);
-      width: 100%;
-      max-width: 1000px;
-      padding: 50px 40px;
-      text-align: center;
-      border: 2px solid var(--accent);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* ===== Spreadshop Anpassungen ===== */
+    .sprd-signup-banner__link.sprd-c-cta,
+    #buttonSpreadshirt {
+      display: none !important; /* Banner + Footer-Promo entfernen */
     }
 
-    #myShop .shop-card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    }
-
-    #myShop a {
+    /* ===== Unsichtbarer Fallback-Link ===== */
+    #myShop > a {
       color: transparent !important;
       text-decoration: none !important;
       font-size: 0 !important;
@@ -77,45 +52,46 @@
       overflow: hidden;
     }
 
-    /* ===== Social Icons ===== */
+    /* ===== Instagram-Icon vergrößern & fixen ===== */
     .sprd-social-bar {
-      transform: scale(1.6) !important;
+      transform: scale(1.8) !important;       /* 1.0 = normal, 1.5 = 50% größer */
       transform-origin: center !important;
-      margin-top: 25px !important;
-      justify-content: center !important;
+      margin-right: 20px !important;          /* Platz rechts, damit nichts abgeschnitten wird */
+      justify-content: center !important;     /* zentriert im Footer */
     }
 
     .sprd-social-bar__icon {
-      overflow: visible !important;
+      overflow: visible !important;           /* verhindert Abschneiden innerhalb des Icons */
     }
 
     .sprd-social-bar__icon:last-child {
-      transform: scale(2.2) !important;
+      transform: scale(2.6) !important;       /* nur Instagram etwas größer */
       transform-origin: center !important;
       margin-left: 12px !important;
     }
 
     .sprd-social-bar__icon:hover {
-      transform: scale(1.6) rotate(2deg) !important;
+      transform: scale(1.8) rotate(3deg) !important;
       transition: transform 0.2s ease-in-out;
     }
 
     .sprd-info-footer {
-      margin-top: 35px !important;
-      padding-bottom: 35px !important;
+      margin-bottom: 40px !important;         /* Abstand nach unten */
+      padding-bottom: 40px !important;        /* extra Platz für größeres Icon */
     }
+
+
   </style>
 </head>
 <body>
 
   <!-- ===== Spreadshop Embed ===== -->
   <div id="myShop">
-    <div class="shop-card">
-      <a href="https://bockblick.myspreadshop.de">bockblick</a>
-    </div>
+    <a href="https://bockblick.myspreadshop.de">bockblick</a>
   </div>
 
   <script>
+    /* ===== Spreadshop Konfiguration ===== */
     window.spread_shop_config = {
       shopName: 'bockblick',
       locale: 'de_DE',
@@ -123,6 +99,7 @@
       baseId: 'myShop'
     };
 
+    /* ===== Dynamische Höhe anpassen ===== */
     function adjustShopHeight() {
       const shopContainer = document.getElementById('myShop');
       if (!shopContainer) return;
@@ -137,6 +114,7 @@
       observer.observe(shopContainer, { childList: true, subtree: true });
     }
 
+    /* ===== Tab-Titel fixieren ===== */
     function fixTabTitle() {
       const head = document.querySelector('head');
       if (!head) return;
@@ -152,7 +130,11 @@
     });
   </script>
 
-  <script src="https://bockblick.myspreadshop.de/shopfiles/shopclient/shopclient.nocache.js" defer></script>
+  <!-- ===== Spreadshop Script ===== -->
+  <script 
+    src="https://bockblick.myspreadshop.de/shopfiles/shopclient/shopclient.nocache.js" 
+    defer>
+  </script>
 
 </body>
 </html>
