@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BockBlick</title>
 
-  <!-- Favicon -->
+    <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="192x192" href="favicon.png?v=2">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon.png?v=2">
   
@@ -16,39 +16,21 @@
       --font-family: Arial, sans-serif;
     }
 
-    html, body {
+    body {
       font-family: var(--font-family);
       margin: 0;
       padding: 0;
-      background: linear-gradient(180deg, #dbe7d4 0%, #f4f5f2 100%);
-      background-attachment: scroll;
-      overflow-x: hidden; 
-      scroll-behavior: smooth;
+      background: var(--bg-color);
     }
 
-    /* ===== Shop Container mit festen Rand ===== */
+    /* ===== Shop Container ===== */
     #myShop {
       width: 100%;
-      max-width: 1200px;
-      min-height: calc(100vh - 80px); /* Platz oben + unten */
-      margin: 40px auto; /* Abstand oben und unten */
-      padding: 5px; /* Innenabstand, damit Inhalt nicht an den Rand stößt */
+      min-height: 100vh;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      background: #ffffff;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
-      border-radius: 12px;
-      box-sizing: border-box;
-    }
-
-    @media (max-width: 768px) {
-      #myShop {
-        margin: 30px auto;
-        padding: 5px;
-        border-radius: 8px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-      }
     }
 
     /* ===== Spreadshop Anpassungen ===== */
@@ -72,30 +54,25 @@
 
     /* ===== Instagram-Icon vergrößern & fixen ===== */
     .sprd-social-bar {
-      transform: scale(1.5) !important;
+      transform: scale(1.5) !important;       /* 1.0 = normal, 1.5 = 50% größer */
       transform-origin: center !important;
-      margin-right: 20px !important;
-      justify-content: center !important;
+      margin-right: 20px !important;          /* Platz rechts, damit nichts abgeschnitten wird */
+      justify-content: center !important;     /* zentriert im Footer */
     }
 
     .sprd-social-bar__icon {
-      overflow: visible !important;
+      overflow: visible !important;           /* verhindert Abschneiden innerhalb des Icons */
     }
 
     .sprd-social-bar__icon:last-child {
-      transform: scale(1.8) !important;
+      transform: scale(1.6) !important;       /* nur Instagram etwas größer */
       transform-origin: center !important;
       margin-left: 12px !important;
     }
 
     .sprd-info-footer {
-      margin-bottom: 20px !important;
-      padding-bottom: 20px !important;
-    }
-
-    .sprd-social-bar__icon:hover {
-      transform: scale(1.8) rotate(3deg) !important;
-      transition: transform 0.2s ease-in-out;
+      margin-bottom: 40px !important;         /* Abstand nach unten */
+      padding-bottom: 40px !important;        /* extra Platz für größeres Icon */
     }
   </style>
 </head>
@@ -115,6 +92,21 @@
       baseId: 'myShop'
     };
 
+    /* ===== Dynamische Höhe anpassen ===== */
+    function adjustShopHeight() {
+      const shopContainer = document.getElementById('myShop');
+      if (!shopContainer) return;
+
+      const observer = new MutationObserver(() => {
+        const child = shopContainer.firstElementChild;
+        if (child) {
+          shopContainer.style.height = child.scrollHeight + 'px';
+        }
+      });
+
+      observer.observe(shopContainer, { childList: true, subtree: true });
+    }
+
     /* ===== Tab-Titel fixieren ===== */
     function fixTabTitle() {
       const head = document.querySelector('head');
@@ -126,6 +118,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      adjustShopHeight();
       fixTabTitle();
     });
   </script>
