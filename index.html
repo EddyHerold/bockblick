@@ -16,33 +16,40 @@
       --font-family: Arial, sans-serif;
     }
 
-   html, body {
-  font-family: var(--font-family);
-  background: linear-gradient(180deg, #dbe7d4 0%, #f4f5f2 100%);
-  background-attachment: scroll;
-  overflow-x: hidden; 
-  scroll-behavior: smooth;
-}
+    html, body {
+      font-family: var(--font-family);
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, #dbe7d4 0%, #f4f5f2 100%);
+      background-attachment: scroll;
+      overflow-x: hidden; 
+      scroll-behavior: smooth;
+    }
 
-#myShop {
-  width: 100%;
-  min-height: calc(100vh - 80px); /* Abstand oben + unten = 80px */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background: #ffffff;
-  max-width: 1200px;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  box-sizing: border-box;
-}
+    /* ===== Shop Container mit festen Rand ===== */
+    #myShop {
+      width: 100%;
+      max-width: 1200px;
+      min-height: calc(100vh - 80px); /* Platz oben + unten */
+      margin: 40px auto; /* Abstand oben und unten */
+      padding: 20px; /* Innenabstand, damit Inhalt nicht an den Rand stößt */
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: #ffffff;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      box-sizing: border-box;
+    }
 
-@media (max-width: 768px) {
-  #myShop {
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-  }
-}
+    @media (max-width: 768px) {
+      #myShop {
+        margin: 30px auto;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      }
+    }
 
     /* ===== Spreadshop Anpassungen ===== */
     .sprd-signup-banner__link.sprd-c-cta,
