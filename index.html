@@ -20,7 +20,9 @@
       font-family: var(--font-family);
       margin: 0;
       padding: 0;
-      background: var(--bg-color);
+      /*background: var(--bg-color);*/
+      background: linear-gradient(180deg, #dbe7d4 0%, #f4f5f2 100%);
+      background-attachment: fixed; /* bleibt beim Scrollen */
     }
 
     /* ===== Shop Container ===== */
@@ -31,7 +33,20 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
+      background: #ffffff; /* klarer, heller Container */
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px 0;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.08); /* weicher Schatten */
+      border-radius: 12px; /* leicht abgerundet */
     }
+    @media (max-width: 768px) {
+    #myShop {
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+  }
 
     /* ===== Spreadshop Anpassungen ===== */
     .sprd-signup-banner__link.sprd-c-cta,
@@ -74,6 +89,13 @@
       margin-bottom: 40px !important;         /* Abstand nach unten */
       padding-bottom: 40px !important;        /* extra Platz für größeres Icon */
     }
+
+    .sprd-social-bar__icon:hover {
+      transform: scale(1.8) rotate(3deg) !important;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    
   </style>
 </head>
 <body>
@@ -101,6 +123,7 @@
         const child = shopContainer.firstElementChild;
         if (child) {
           shopContainer.style.height = child.scrollHeight + 'px';
+          observer.disconnect(); // stoppt Beobachtung, wenn fertig
         }
       });
 
