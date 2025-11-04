@@ -19,23 +19,23 @@
     html, body {
       font-family: var(--font-family);
       margin: 0;
-      padding-top: 40px; /* gleichmäßiger Abstand oben */
+      padding-top: 20px; 
       background: linear-gradient(180deg, #dbe7d4 0%, #f4f5f2 100%);
       background-attachment: fixed;
-      overflow-x: hidden; /* ✅ verhindert horizontales Scrollen auf Mobil */
-      scroll-behavior: smooth; /* sanftes Scrollen */
+      overflow-x: hidden; 
+      scroll-behavior: smooth;
     }
 
     /* ===== Shop Container ===== */
     #myShop {
       width: 100%;
-      min-height: calc(100vh - 80px); /* ✅ lässt Platz oben */
+      min-height: calc(100vh - 80px);
       display: flex;
       justify-content: center;
       align-items: flex-start;
       background: #ffffff;
       max-width: 1200px;
-      margin: 0 auto 40px auto; /* nur unten noch Abstand */
+      margin: 0 auto 40px auto; 
       padding: 20px 0;
       box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
       border-radius: 12px;
@@ -44,7 +44,7 @@
 
     @media (max-width: 768px) {
       #myShop {
-        margin: 40px auto 20px auto; /* ✅ auch mobil schöner Abstand */
+        margin: 40px auto 20px auto; 
         border-radius: 8px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
       }
