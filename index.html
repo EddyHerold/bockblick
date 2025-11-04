@@ -54,7 +54,7 @@
 
     /* ===== Instagram-Icon vergrößern & fixen ===== */
     .sprd-social-bar {
-      transform: scale(1.5) !important;       /* 1.0 = normal, 1.5 = 50% größer */
+      transform: scale(1.0) !important;       /* 1.0 = normal, 1.5 = 50% größer */
       transform-origin: center !important;
       margin-right: 20px !important;          /* Platz rechts, damit nichts abgeschnitten wird */
       justify-content: center !important;     /* zentriert im Footer */
@@ -70,10 +70,17 @@
       margin-left: 12px !important;
     }
 
+    .sprd-social-bar__icon:hover {
+      transform: scale(1.8) rotate(3deg) !important;
+      transition: transform 0.2s ease-in-out;
+    }
+
     .sprd-info-footer {
       margin-bottom: 40px !important;         /* Abstand nach unten */
       padding-bottom: 40px !important;        /* extra Platz für größeres Icon */
     }
+
+
   </style>
 </head>
 <body>
