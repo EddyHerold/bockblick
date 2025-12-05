@@ -3,16 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BockBlick</title>
-
+  <title>BockBlick - Naturverbunden. Aktiv. Authentisch.</title>
+  <meta name="description" content="BockBlick – Naturverbunden. Aktiv. Authentisch. Unsere Designs für deine Leidenschaft.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.bockblick.shop/">
+ <!-- Open Graph -->
+  <meta property="og:title" content="BockBlick – Naturverbunden. Aktiv. Authentisch. Unsere Designs für deine Leidenschaft.">
+  <meta property="og:description" content="Naturverbunden. Aktiv. Authentisch. Unsere Designs für deine Leidenschaft.">
+  <meta property="og:url" content="https://www.bockblick.shop/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://www.bockblick.shop/bockblick-shop.jpg">
     <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="192x192" href="favicon.png?v=2">
   <link rel="apple-touch-icon" sizes="192x192" href="favicon.png?v=2">
-  
+
   <style>
     /* ===== Globale Styles ===== */
     :root {
-      --bg-color: #F5EBDD;
+      --bg-color: #FFFFFF;
       --font-family: Arial, sans-serif;
     }
 
@@ -39,33 +47,20 @@
       display: none !important; /* Banner + Footer-Promo entfernen */
     }
 
-    /* ===== Unsichtbarer Fallback-Link ===== */
-    #myShop > a {
-      color: transparent !important;
-      text-decoration: none !important;
-      font-size: 0 !important;
-      cursor: default !important;
-      background: transparent !important;
-      display: inline-block;
-      width: 100%;
-      height: 1px;
-      overflow: hidden;
-    }
-
     /* ===== Instagram-Icon vergrößern & fixen ===== */
     .sprd-social-bar {
-      transform: scale(1.8) !important;       /* 1.0 = normal, 1.5 = 50% größer */
+      transform: scale(1.8) !important;       
       transform-origin: center !important;
-      margin-right: 20px !important;          /* Platz rechts, damit nichts abgeschnitten wird */
-      justify-content: center !important;     /* zentriert im Footer */
+      margin-right: 20px !important;          
+      justify-content: center !important;    
     }
 
     .sprd-social-bar__icon {
-      overflow: visible !important;           /* verhindert Abschneiden innerhalb des Icons */
+      overflow: visible !important;           
     }
 
     .sprd-social-bar__icon:last-child {
-      transform: scale(2.6) !important;       /* nur Instagram etwas größer */
+      transform: scale(2.6) !important;      
       transform-origin: center !important;
       margin-left: 12px !important;
     }
@@ -76,8 +71,8 @@
     }
 
     .sprd-info-footer {
-      margin-bottom: 40px !important;         /* Abstand nach unten */
-      padding-bottom: 40px !important;        /* extra Platz für größeres Icon */
+      margin-bottom: 40px !important;        
+      padding-bottom: 40px !important;       
     }
 
 
@@ -85,9 +80,19 @@
 </head>
 <body>
 
+
+  <!-- ===== Fallback für No-JS ===== -->
+<noscript>
+  <p style="padding:1rem; text-align:center;">
+    JavaScript ist deaktiviert. Hier geht es direkt zum Shop:
+    <a href="https://bockblick.myspreadshop.de">Jetzt besuchen</a>
+  </p>
+</noscript>
+
+
   <!-- ===== Spreadshop Embed ===== -->
   <div id="myShop">
-    <a href="https://bockblick.myspreadshop.de">bockblick</a>
+    <a href="https://bockblick.myspreadshop.de"></a>
   </div>
 
   <script>
@@ -114,20 +119,22 @@
       observer.observe(shopContainer, { childList: true, subtree: true });
     }
 
-    /* ===== Tab-Titel fixieren ===== */
+   /* ===== Tab-Titel fixieren ===== */
     function fixTabTitle() {
       const head = document.querySelector('head');
       if (!head) return;
       const titleObserver = new MutationObserver(() => {
-        if (document.title !== 'BockBlick') document.title = 'BockBlick';
+        if (document.title !== 'BockBlick - Naturverbunden. Aktiv. Authentisch.') document.title = 'BockBlick - Naturverbunden. Aktiv. Authentisch.';
       });
       titleObserver.observe(head, { childList: true, subtree: true });
     }
+
 
     document.addEventListener('DOMContentLoaded', () => {
       adjustShopHeight();
       fixTabTitle();
     });
+
   </script>
 
   <!-- ===== Spreadshop Script ===== -->
